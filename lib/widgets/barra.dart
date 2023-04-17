@@ -23,7 +23,7 @@ class Barra extends StatelessWidget {
       height: altura,
       decoration: BoxDecoration(
           color: color,
-          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(2.0)),
           border: Border.all(
               width: 5,
               color: Colors.black

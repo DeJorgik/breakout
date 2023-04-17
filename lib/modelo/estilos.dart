@@ -38,7 +38,7 @@ class Estilos {
       backgroundColor: MaterialStatePropertyAll<Color>(Colors.amber),
       shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero
+              borderRadius: BorderRadius.all(Radius.circular(15.0))
           )
       )
   );
@@ -47,9 +47,17 @@ class Estilos {
       backgroundColor: MaterialStatePropertyAll<Color>(Colors.orange),
       shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero
+              borderRadius: BorderRadius.all(Radius.circular(15.0))
           )
-      )
+      ),
+  );
+
+  //Separador constante que separa los elementos de la lista
+  //Se usa para cumplir DRY
+  //privado pq solo se usa en esta vista
+  final SizedBox separador = const SizedBox(
+    height: 25,
+    width: 25,
   );
 
   //Constructor anonimo
