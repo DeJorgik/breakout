@@ -85,7 +85,7 @@ class _Como_JugarState extends State<Como_Jugar> {
                             });
                           },
                           icon: Icon(
-                              Icons.arrow_right,
+                              Icons.arrow_left,
                               size: 30
                           )
                       )

@@ -1,2 +1,2 @@
 export 'pelota.dart';
-export 'barra.dart';
+export 'raqueta.dart';

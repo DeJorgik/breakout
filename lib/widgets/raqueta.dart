@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+
+/*
+ * Clase de la Barra
+ */
+
+class Raqueta extends StatelessWidget {
+
+  //tamaño de la Raqueta
+  final double anchura;
+  final double altura;
+
+  //Color de la Raqueta
+  final Color color;
+
+  Raqueta({Key? key, this.anchura = 45, this.altura = 15, this.color = Colors.white});
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      width: anchura,
+      height: altura,
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.all(Radius.circular(2.0)),
+          border: Border.all(
+              width: 5,
+              color: Colors.black
+          )
+      ),
+    );
+  }
+}
