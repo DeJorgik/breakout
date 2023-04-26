@@ -32,22 +32,26 @@ class Game_Over extends StatelessWidget {
                 ),
                 Estilos.EstiloInstancia.separador,
                 Text(
-                  "567",
+                  "${Jugador.JugadorInstancia.record}",
                   style: GoogleFonts.vt323(
                     textStyle: Estilos.EstiloInstancia.titulo2
                   ),
                 ),
                 Estilos.EstiloInstancia.separador,
-                Text(
+                //El mensaje solo se muestra cuando hay un nuevo récord
+                Jugador.JugadorInstancia.puntuacion_actual == Jugador.JugadorInstancia.record ? Text(
                   "NUEVO RECORD!",
                   style: GoogleFonts.vt323(),
                   textScaleFactor: 1.5,
-                ),
+                ) : const SizedBox(),
                 Estilos.EstiloInstancia.separador,
                 SizedBox(
                   width: Pantalla.PantallaInstancia.ancho/2,
                   child: ElevatedButton(
-                      onPressed: () => 0,
+                      onPressed: () => Navigator.push(
+                          context,
+                        MaterialPageRoute(builder: (context) => const Pantalla_Juego()),
+                      ),
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "REINICIAR",

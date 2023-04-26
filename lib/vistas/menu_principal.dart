@@ -51,7 +51,7 @@ class Menu_Principal extends StatelessWidget {
                             child: ElevatedButton(
                                 onPressed: () => Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => Game_Over())
+                                    MaterialPageRoute(builder: (context) => Pantalla_Juego())
                                 ),
                                 style: Estilos.EstiloInstancia.estiloboton1,
                                 child: Text(

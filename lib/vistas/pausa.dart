@@ -28,7 +28,7 @@ class Pausa extends StatelessWidget {
                 SizedBox(
                   width: Pantalla.PantallaInstancia.ancho/2,
                   child: ElevatedButton(
-                      onPressed: () => Jugador.JugadorInstancia.record+=1,
+                      onPressed: () => Navigator.pop(context), //Volver a la pantalla de juego, continuando
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "CONTINUAR",
@@ -41,7 +41,8 @@ class Pausa extends StatelessWidget {
                 SizedBox(
                   width: Pantalla.PantallaInstancia.ancho/2,
                   child: ElevatedButton(
-                      onPressed: () => 0,
+                    //Volver a la pantalla de juego reseteando
+                      onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Pantalla_Juego()), (e) => false),
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "REINICIAR",
@@ -54,10 +55,8 @@ class Pausa extends StatelessWidget {
                 SizedBox(
                   width: Pantalla.PantallaInstancia.ancho/2,
                   child: ElevatedButton(
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Menu_Principal())
-                      ),
+                    //Volver a la pantalla de menu reseteando
+                      onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Menu_Principal()), (e) => false),
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "SALIR",

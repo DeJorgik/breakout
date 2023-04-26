@@ -84,8 +84,8 @@ class _Como_JugarState extends State<Como_Jugar> {
                               texto_instruccion = instrucciones[id_instruccion];
                             });
                           },
-                          icon: Icon(
-                              Icons.arrow_left,
+                          icon: const Icon(
+                              Icons.arrow_right,
                               size: 30
                           )
                       )
@@ -104,7 +104,7 @@ class _Como_JugarState extends State<Como_Jugar> {
                               texto_instruccion = instrucciones[id_instruccion];
                             });
                             },
-                          icon: Icon(
+                          icon: const Icon(
                               Icons.arrow_left,
                               size: 30
                           )

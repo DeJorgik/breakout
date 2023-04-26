@@ -4,3 +4,4 @@ export 'como_jugar.dart';
 export 'pausa.dart';
 export 'tienda.dart';
 export 'game_over.dart';
+export 'pantalla_juego.dart';
