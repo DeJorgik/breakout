@@ -45,9 +45,7 @@ class _Como_JugarState extends State<Como_Jugar> {
                       top: 25,
                       child: Text(
                         "CÓMO JUGAR",
-                        style: GoogleFonts.vt323(
-                            textStyle: Estilos.EstiloInstancia.titulo2
-                        ),
+                        style: Estilos.EstiloInstancia.titulo2,
                       )
                   ),
                   Positioned(
@@ -56,6 +54,9 @@ class _Como_JugarState extends State<Como_Jugar> {
                       "[${id_instruccion+1}/5]",
                       textAlign: TextAlign.center,
                       textScaleFactor: 1.3,
+                      style: const TextStyle(
+                        fontFamily: 'VT323'
+                      ),
                       ),
                     ),
                   Positioned(
@@ -67,6 +68,9 @@ class _Como_JugarState extends State<Como_Jugar> {
                         texto_instruccion,
                         textAlign: TextAlign.center,
                         textScaleFactor: 1.2,
+                        style: const TextStyle(
+                            fontFamily: 'VT323'
+                        ),
                       ),
                     ),
                   ),
@@ -117,9 +121,7 @@ class _Como_JugarState extends State<Como_Jugar> {
                           style: Estilos.EstiloInstancia.estiloboton2,
                           child: Text(
                             "VOLVER",
-                            style: GoogleFonts.vt323(
-                                textStyle: Estilos.EstiloInstancia.texto2
-                            ),
+                            style: Estilos.EstiloInstancia.texto2
                           )
                       )
                   )

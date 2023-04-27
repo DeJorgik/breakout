@@ -64,9 +64,7 @@ class _TiendaState extends State<Tienda> {
                       top: 25,
                       child: Text(
                         "TIENDA",
-                        style: GoogleFonts.vt323(
-                            textStyle: Estilos.EstiloInstancia.titulo2
-                        ),
+                        style:Estilos.EstiloInstancia.titulo2
                       )
                   ),
                   Positioned(
@@ -144,9 +142,7 @@ class _TiendaState extends State<Tienda> {
                           style: Estilos.EstiloInstancia.estiloboton2,
                           child: Text(
                             "VOLVER",
-                            style: GoogleFonts.vt323(
-                                textStyle: Estilos.EstiloInstancia.texto2
-                            ),
+                            style: Estilos.EstiloInstancia.texto2
                           )
                       )
                   )

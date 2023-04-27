@@ -79,14 +79,14 @@ class _RejillaJuegoState extends State<RejillaJuego>
     }
     if (yPelota <= 0 && direccionVertical == Direccion.arriba) {
       direccionVertical = Direccion.abajo;
-    } else if (yPelota - altoRaqueta + mitadPelota >= bordeInferior &&
+    } else if (yPelota - altoRaqueta + yRaqueta/2 + mitadPelota >= bordeInferior &&
         direccionVertical == Direccion.abajo) {
       if (xPelota >= (xRaqueta - mitadPelota) &&
           xPelota <= (xRaqueta + anchoRaqueta + mitadPelota)) {
         direccionVertical = Direccion.arriba;
       } else {
-        controladorAnimacion.stop();
-        preguntarRepetirPartida(context);
+          controladorAnimacion.stop();
+          preguntarRepetirPartida(context);
       }
     }
   }
@@ -120,6 +120,10 @@ class _RejillaJuegoState extends State<RejillaJuego>
               brick_vidas[i][j] = brick_vidas[i][j] - 1;
               //Aumentar puntuación actual
               Jugador.JugadorInstancia.puntuacion_actual++;
+              //Aumenta velocidad
+              setState(() {
+                incremento+=0.05;
+              });
               //Comprobar el récord
               comprobarRecord();
               if (brick_vidas[i][j] == 0) {
@@ -237,24 +241,25 @@ class _RejillaJuegoState extends State<RejillaJuego>
                       //Entrar en la pantalla de pausa
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Pausa()));
 
-                      //Retardo deliberado para que no sea tan brusco
-
                       controladorAnimacion.forward();
 
                     },
                     icon: const Icon(Icons.pause, color: Colors.black, size: 30)),
                 Text(
                   "${Jugador.JugadorInstancia.puntuacion_actual}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
-                    fontSize: 20,
+                    fontSize: 50,
+                    fontFamily: 'VT323',
+                    fontWeight: FontWeight.bold
                   ),
                 ),
                 Text(
                   "Record: ${Jugador.JugadorInstancia.record}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 20,
+                    fontFamily: 'VT323'
                   ),
                 ),
               ],

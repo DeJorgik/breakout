@@ -30,18 +30,14 @@ class Menu_Principal extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             "BREAKOUT",
-                            style: GoogleFonts.vt323(
-                                textStyle: Estilos.EstiloInstancia.titulo
-                            ),
+                            style: Estilos.EstiloInstancia.titulo,
                           ),
                           const SizedBox(
                               height: 5
                           ),
                           Text(
                               "Récord: ${Jugador.JugadorInstancia.record}",
-                              style: GoogleFonts.vt323(
-                                  textStyle: Estilos.EstiloInstancia.texto3
-                              )
+                              style: Estilos.EstiloInstancia.texto3
                           ),
                           const SizedBox(
                               height: 10
@@ -56,9 +52,7 @@ class Menu_Principal extends StatelessWidget {
                                 style: Estilos.EstiloInstancia.estiloboton1,
                                 child: Text(
                                     " JUGAR! ",
-                                    style: GoogleFonts.vt323
-                                      (textStyle: Estilos.EstiloInstancia.texto1
-                                    )
+                                    style: Estilos.EstiloInstancia.texto1
                                 )
                             ),
                           ),
@@ -75,9 +69,7 @@ class Menu_Principal extends StatelessWidget {
                                 style: Estilos.EstiloInstancia.estiloboton2,
                                 child: Text(
                                   "TIENDA",
-                                  style: GoogleFonts.vt323(
-                                    textStyle: Estilos.EstiloInstancia.texto2,
-                                  ),
+                                    style: Estilos.EstiloInstancia.texto2,
                                 )
                             ),
                           ),
@@ -94,9 +86,7 @@ class Menu_Principal extends StatelessWidget {
                                 style: Estilos.EstiloInstancia.estiloboton2,
                                 child: Text(
                                     "CÓMO JUGAR",
-                                    style: GoogleFonts.vt323(
-                                        textStyle: Estilos.EstiloInstancia.texto2
-                                    )
+                                    style: Estilos.EstiloInstancia.texto2
                                 )
                             ),
                           ),

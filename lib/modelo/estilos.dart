@@ -6,31 +6,36 @@ class Estilos {
   final TextStyle titulo = const TextStyle(
       fontSize: 65,
       fontWeight: FontWeight.bold,
-      color: Colors.black
+      color: Colors.black,
+      fontFamily: 'VT323',
   );
 
   final TextStyle titulo2 = const TextStyle(
       fontSize: 50,
       fontWeight: FontWeight.bold,
-      color: Colors.black
+      color: Colors.black,
+      fontFamily: 'VT323',
   );
 
   final TextStyle texto1 = const TextStyle(
       fontSize: 45,
       fontWeight: FontWeight.w500,
-      color: Colors.white
+      color: Colors.white,
+      fontFamily: 'VT323',
   );
 
    final TextStyle texto2 = const TextStyle(
       fontSize: 25,
       fontWeight: FontWeight.w400,
-      color: Colors.white
+      color: Colors.white,
+      fontFamily: 'VT323',
   );
 
   final TextStyle texto3 = const TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w300,
-      color: Colors.black
+      color: Colors.black,
+      fontFamily: 'VT323',
   );
 
   //Estilo de botones

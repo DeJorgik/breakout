@@ -20,44 +20,43 @@ class Game_Over extends StatelessWidget {
               children: <Widget>[
                 Text(
                   "GAME OVER",
-                  style: GoogleFonts.vt323(
-                      textStyle: Estilos.EstiloInstancia.titulo
+                  style: Estilos.EstiloInstancia.titulo
+                ),
+                Estilos.EstiloInstancia.separador,
+                const Text(
+                  "Puntuación:",
+                  textScaleFactor: 1.5,
+                  style: TextStyle(
+                      fontFamily: 'VT323'
                   ),
                 ),
                 Estilos.EstiloInstancia.separador,
                 Text(
-                  "Puntuación:",
-                  style: GoogleFonts.vt323(),
-                  textScaleFactor: 1.5,
-                ),
-                Estilos.EstiloInstancia.separador,
-                Text(
-                  "${Jugador.JugadorInstancia.record}",
+                  "${Jugador.JugadorInstancia.puntuacion_actual}",
                   style: GoogleFonts.vt323(
                     textStyle: Estilos.EstiloInstancia.titulo2
                   ),
                 ),
                 Estilos.EstiloInstancia.separador,
                 //El mensaje solo se muestra cuando hay un nuevo récord
-                Jugador.JugadorInstancia.puntuacion_actual == Jugador.JugadorInstancia.record ? Text(
+                (Jugador.JugadorInstancia.puntuacion_actual == Jugador.JugadorInstancia.record) ?
+                const Text(
                   "NUEVO RECORD!",
-                  style: GoogleFonts.vt323(),
+                  style: TextStyle(
+                      fontFamily: 'VT323'
+                  ),
                   textScaleFactor: 1.5,
                 ) : const SizedBox(),
                 Estilos.EstiloInstancia.separador,
                 SizedBox(
                   width: Pantalla.PantallaInstancia.ancho/2,
                   child: ElevatedButton(
-                      onPressed: () => Navigator.push(
-                          context,
-                        MaterialPageRoute(builder: (context) => const Pantalla_Juego()),
-                      ),
+                      //Resetear
+                      onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Pantalla_Juego()), (e) => false),
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "REINICIAR",
-                        style: GoogleFonts.vt323(
-                          textStyle: Estilos.EstiloInstancia.texto2,
-                        ),
+                        style: Estilos.EstiloInstancia.texto2,
                       )
                   ),
                 ),
@@ -71,9 +70,7 @@ class Game_Over extends StatelessWidget {
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "SALIR",
-                        style: GoogleFonts.vt323(
-                          textStyle: Estilos.EstiloInstancia.texto2,
-                        ),
+                        style: Estilos.EstiloInstancia.texto2,
                       )
                   ),
                 ),

@@ -32,9 +32,7 @@ class Pausa extends StatelessWidget {
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "CONTINUAR",
-                        style: GoogleFonts.vt323(
-                          textStyle: Estilos.EstiloInstancia.texto2,
-                        ),
+                        style: Estilos.EstiloInstancia.texto2,
                       )
                   ),
                 ),
@@ -46,9 +44,7 @@ class Pausa extends StatelessWidget {
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "REINICIAR",
-                        style: GoogleFonts.vt323(
-                          textStyle: Estilos.EstiloInstancia.texto2,
-                        ),
+                        style: Estilos.EstiloInstancia.texto2,
                       )
                   ),
                 ),
@@ -60,9 +56,7 @@ class Pausa extends StatelessWidget {
                       style: Estilos.EstiloInstancia.estiloboton2,
                       child: Text(
                         "SALIR",
-                        style: GoogleFonts.vt323(
-                          textStyle: Estilos.EstiloInstancia.texto2,
-                        ),
+                        style: Estilos.EstiloInstancia.texto2,
                       )
                   ),
                 ),
