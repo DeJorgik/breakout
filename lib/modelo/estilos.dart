@@ -4,35 +4,35 @@ import 'package:flutter/material.dart';
 class Estilos {
   //Fuentes
   final TextStyle titulo = const TextStyle(
-      fontSize: 65,
+      fontSize: 75,
       fontWeight: FontWeight.bold,
       color: Colors.black,
       fontFamily: 'VT323',
   );
 
   final TextStyle titulo2 = const TextStyle(
-      fontSize: 50,
+      fontSize: 60,
       fontWeight: FontWeight.bold,
       color: Colors.black,
       fontFamily: 'VT323',
   );
 
   final TextStyle texto1 = const TextStyle(
-      fontSize: 45,
+      fontSize: 55,
       fontWeight: FontWeight.w500,
       color: Colors.white,
       fontFamily: 'VT323',
   );
 
    final TextStyle texto2 = const TextStyle(
-      fontSize: 25,
+      fontSize: 35,
       fontWeight: FontWeight.w400,
       color: Colors.white,
       fontFamily: 'VT323',
   );
 
   final TextStyle texto3 = const TextStyle(
-      fontSize: 15,
+      fontSize: 20,
       fontWeight: FontWeight.w300,
       color: Colors.black,
       fontFamily: 'VT323',

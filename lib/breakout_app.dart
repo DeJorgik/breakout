@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'vistas/vistas.dart';
+import 'modelo/modelo.dart';
 
 class BreakoutApp extends StatelessWidget {
   const BreakoutApp({Key? key}) : super(key: key);
@@ -10,7 +11,9 @@ class BreakoutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    //Que no se pueda girar y que no se vea la barra del so arriba
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
     return MaterialApp(
         title: titulo,

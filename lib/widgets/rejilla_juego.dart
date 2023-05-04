@@ -1,10 +1,8 @@
 import 'dart:math';
-import 'package:breakout/vistas/game_over.dart';
 import 'widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:breakout/modelo/modelo.dart';
 import 'package:breakout/vistas/vistas.dart';
-
 import 'ladrillo.dart';
 
 class RejillaJuego extends StatefulWidget {
@@ -19,6 +17,7 @@ enum Direccion {
   abajo,
   izquierda,
   derecha,
+  nada //cuando solo se mueve en un eje, osea al principio del juego
 }
 
 class _RejillaJuegoState extends State<RejillaJuego>
@@ -38,6 +37,8 @@ class _RejillaJuegoState extends State<RejillaJuego>
 
   //Info juego
   late double incremento;
+  late int dificultad; //se usa para multiplicar el numero de ladrillos y la vida maxima de estos
+  late String cuenta_atras;
 
   //Info de la pelota y la raqueta
   late double xRaqueta;
@@ -71,12 +72,14 @@ class _RejillaJuegoState extends State<RejillaJuego>
     }
     double bordeDerecho = anchoRejilla - diametroPelota;
     double bordeInferior = altoRejilla - diametroPelota - altoRaqueta - yRaqueta;
-    if (xPelota <= 0 && direccionHorizontal == Direccion.izquierda) {
+
+      if (xPelota <= 0 && direccionHorizontal == Direccion.izquierda) {
       direccionHorizontal = Direccion.derecha;
     } else if (xPelota >= bordeDerecho &&
         direccionHorizontal == Direccion.derecha) {
       direccionHorizontal = Direccion.izquierda;
     }
+
     if (yPelota <= 0 && direccionVertical == Direccion.arriba) {
       direccionVertical = Direccion.abajo;
     } else if (yPelota - altoRaqueta + yRaqueta/2 + mitadPelota >= bordeInferior &&
@@ -84,12 +87,16 @@ class _RejillaJuegoState extends State<RejillaJuego>
       if (xPelota >= (xRaqueta - mitadPelota) &&
           xPelota <= (xRaqueta + anchoRaqueta + mitadPelota)) {
         direccionVertical = Direccion.arriba;
+        //primer toque
+        if(direccionHorizontal == Direccion.nada){
+          direccionHorizontal = Direccion.derecha;
+        }
       } else {
           controladorAnimacion.stop();
           preguntarRepetirPartida(context);
       }
     }
-  }
+    }
 
   //Funcion que determina el movimiento de la raqueta
   //Evita que se salga de los bordes del mapa
@@ -121,30 +128,31 @@ class _RejillaJuegoState extends State<RejillaJuego>
               //Aumentar puntuación actual
               Jugador.JugadorInstancia.puntuacion_actual++;
               //Aumenta velocidad
-              setState(() {
-                incremento+=0.05;
-              });
+              incremento+=0.005;
               //Comprobar el récord
               comprobarRecord();
               if (brick_vidas[i][j] == 0) {
                 ladrillos_restantes--;
               }
+
+              //Los ladrillos negros hacen que la pelota se haga mas pequeña
+              if (brick_vidas[i][j] >= 9) {
+                diametroPelota--;
+              }
+
               if (ladrillos_restantes == 0) {
 
-                //Se reseta la posición de la pelota
-                xPelota = Pantalla.PantallaInstancia.ancho/2 -( Pantalla.PantallaInstancia.ancho/15)/2 -1;
-                yPelota = Pantalla.PantallaInstancia.alto - (Pantalla.PantallaInstancia.ancho/5) * 3;
-                //ir pa arriba
-                direccionHorizontal = Direccion.izquierda;
-                direccionVertical = Direccion.arriba;
-
                 //Aumenta velocidad
-                setState(() {
-                  incremento++;
-                });
+                incremento+=0.05;
+
+                //Aumentar la dificultad
+                aumentarDificultad();
 
                 //Regenerar larillos
                 regenerarLadrillos();
+
+                //Poner pelota en posicion inicial
+                comenzarPartida();
               }
             });
 
@@ -162,36 +170,77 @@ class _RejillaJuegoState extends State<RejillaJuego>
   //Funcion que crea un nuevo set de ladrillos
   void regenerarLadrillos() {
     Random random = new Random();
-    brick_vidas =
-        List.generate(numRowBricks, (index) => List.filled(numColBricks, 0));
+    brick_vidas = List.generate(numRowBricks, (index) => List.filled(numColBricks, 0, growable: true), growable: true);
+
     for (int i = 0; i < numRowBricks; i++) {
       for (int j = 0; j < numColBricks; j++) {
-        brick_vidas[i][j] = random.nextInt(3) + 1;
+        brick_vidas[i][j] = random.nextInt(dificultad) + 1;
       }
     }
-    ladrillos_restantes = numColBricks * numRowBricks;
+
+    ladrillos_restantes = numRowBricks*numColBricks;
+
   }
 
   //Funcion que actualiza el valor del record
   void comprobarRecord(){
+    //Guardar récord en archivo
+    //ResourceManager.ResourcemanagerInstancia.guardar();
     setState(() {
       Jugador.JugadorInstancia.record = max(Jugador.JugadorInstancia.record, Jugador.JugadorInstancia.puntuacion_actual);
     });
   }
 
   //TODO Cuenta atras
+  void comenzarPartida() async {
+    controladorAnimacion.stop();
+    setState(() {
+      direccionHorizontal = Direccion.nada;
+      direccionVertical = Direccion.arriba;
+      xPelota = xRaqueta + mitadPelota;
+      yPelota = Pantalla.PantallaInstancia.alto/2 + altoRaqueta + yRaqueta/2 + mitadPelota;
+    });
+    setState(() {
+      cuenta_atras = "3";
+    });
+    await Future.delayed(const Duration(milliseconds:500));
+    setState(() {
+      cuenta_atras = "2";
+    });
+    await Future.delayed(const Duration(milliseconds:500));
+    setState(() {
+      cuenta_atras = "1";
+    });
+    await Future.delayed(const Duration(milliseconds:500));
+    setState(() {
+      cuenta_atras = "YA!";
+    });
+    await Future.delayed(const Duration(milliseconds: 500));
+    setState(() {
+      cuenta_atras = "";
+    });
+    controladorAnimacion.forward();
+  }
+
+  //Aumentar dificultad
+  void aumentarDificultad(){
+    setState(() {
+        dificultad+=2;
+      });
+  }
 
   @override
   void initState() {
 
     //Inicialización
     xRaqueta = Pantalla.PantallaInstancia.ancho/2 - (Pantalla.PantallaInstancia.ancho/5)/2;
-    incremento = 2.0;
+    incremento = 3.0;
+    dificultad = 1;
     diametroPelota = Pantalla.PantallaInstancia.ancho/15;
     mitadPelota = diametroPelota / 2.0;
     xPelota = Pantalla.PantallaInstancia.ancho/2 -( Pantalla.PantallaInstancia.ancho/15)/2 -1;
     yPelota = Pantalla.PantallaInstancia.alto - (Pantalla.PantallaInstancia.ancho/5) * 4;
-    yRaqueta = Pantalla.PantallaInstancia.ancho/15;//para que haya un margen entre la raqueta y el borde de la pantalla
+    yRaqueta = Pantalla.PantallaInstancia.alto/15;//para que haya un margen entre la raqueta y el borde de la pantalla
 
     //Cuando empieza la partida, la puntuacion actual es 0
     Jugador.JugadorInstancia.puntuacion_actual = 0;
@@ -201,13 +250,17 @@ class _RejillaJuegoState extends State<RejillaJuego>
       vsync: this,
     );
 
+    cuenta_atras = "";
+
     regenerarLadrillos();
 
     controladorAnimacion.addListener(() {
       setState(() {
-        (direccionHorizontal == Direccion.derecha)
-            ? xPelota += incremento
-            : xPelota -= incremento;
+        if(direccionHorizontal != Direccion.nada) {
+          (direccionHorizontal == Direccion.derecha)
+              ? xPelota += incremento
+              : xPelota -= incremento;
+        }
         (direccionVertical == Direccion.abajo)
             ? yPelota += incremento
             : yPelota -= incremento;
@@ -218,7 +271,8 @@ class _RejillaJuegoState extends State<RejillaJuego>
 
     super.initState();
 
-    controladorAnimacion.forward();
+    comenzarPartida();
+
   }
 
   @override
@@ -230,7 +284,7 @@ class _RejillaJuegoState extends State<RejillaJuego>
             height: 80,
             color: Colors.white,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
                     onPressed: (){
@@ -245,8 +299,9 @@ class _RejillaJuegoState extends State<RejillaJuego>
 
                     },
                     icon: const Icon(Icons.pause, color: Colors.black, size: 30)),
-                Text(
+               Text(
                   "${Jugador.JugadorInstancia.puntuacion_actual}",
+                 textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 50,
@@ -255,7 +310,8 @@ class _RejillaJuegoState extends State<RejillaJuego>
                   ),
                 ),
                 Text(
-                  "Record: ${Jugador.JugadorInstancia.record}",
+                  "Record:\n ${Jugador.JugadorInstancia.record}",
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -289,6 +345,16 @@ class _RejillaJuegoState extends State<RejillaJuego>
                               vida: brick_vidas[i][j],
                             ),
                           ),
+                    Positioned(
+                      bottom:Pantalla.PantallaInstancia.alto/3,
+                        child: SizedBox(
+                          width: Pantalla.PantallaInstancia.ancho,
+                          child: Text("$cuenta_atras",
+                            style: Estilos.EstiloInstancia.titulo,
+                            textAlign: TextAlign.center,
+                          )
+                        )
+                    ),
                     Positioned(
                       top: yPelota,
                       left: xPelota,

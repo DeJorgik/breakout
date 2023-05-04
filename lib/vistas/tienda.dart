@@ -1,7 +1,6 @@
 import 'package:breakout/vistas/vistas.dart';
 import 'package:breakout/widgets/pelota.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:breakout/modelo/modelo.dart';
 
 /*
@@ -21,19 +20,19 @@ class _TiendaState extends State<Tienda> {
   final List<Item_Tienda> lista_item_tienda= [
     Item_Tienda(id: 0, color: Colors.white, precio: 0),
     Item_Tienda(id: 0, color: Colors.red, precio: 10),
-    Item_Tienda(id: 1, color: Colors.blue, precio: 10),
-    Item_Tienda(id: 2, color: Colors.green, precio: 20),
-    Item_Tienda(id: 3, color: Colors.yellowAccent, precio: 20),
-    Item_Tienda(id: 4, color: Colors.orange, precio: 20),
-    Item_Tienda(id: 5, color: Colors.pink, precio: 30),
-    Item_Tienda(id: 6, color: Colors.purpleAccent, precio: 30),
-    Item_Tienda(id: 7, color: Colors.deepPurple, precio: 30),
-    Item_Tienda(id: 8, color: Colors.tealAccent, precio: 40),
-    Item_Tienda(id: 9, color: Colors.lightGreenAccent, precio: 40),
-    Item_Tienda(id: 10, color: Colors.brown, precio: 40),
-    Item_Tienda(id: 11, color: Colors.blueGrey, precio: 50),
-    Item_Tienda(id: 12, color: Colors.grey, precio: 50),
-    Item_Tienda(id: 13, color: Colors.black, precio: 50),
+    Item_Tienda(id: 1, color: Colors.blue, precio: 20),
+    Item_Tienda(id: 2, color: Colors.green, precio: 30),
+    Item_Tienda(id: 3, color: Colors.yellowAccent, precio: 40),
+    Item_Tienda(id: 4, color: Colors.orange, precio: 50),
+    Item_Tienda(id: 5, color: Colors.pink, precio: 60),
+    Item_Tienda(id: 6, color: Colors.purpleAccent, precio: 70),
+    Item_Tienda(id: 7, color: Colors.deepPurple, precio: 80),
+    Item_Tienda(id: 8, color: Colors.tealAccent, precio: 90),
+    Item_Tienda(id: 9, color: Colors.lightGreenAccent, precio: 100),
+    Item_Tienda(id: 10, color: Colors.brown, precio: 110),
+    Item_Tienda(id: 11, color: Colors.blueGrey, precio: 120),
+    Item_Tienda(id: 12, color: Colors.grey, precio: 130),
+    Item_Tienda(id: 13, color: Colors.black, precio: 140),
   ];
 
   //Color actual
@@ -73,9 +72,7 @@ class _TiendaState extends State<Tienda> {
                         children: <Widget>[
                           Text(
                             "Récord: ${Jugador.JugadorInstancia.record}",
-                            style: GoogleFonts.vt323(
-                                textStyle: Estilos.EstiloInstancia.texto3
-                            ),
+                            style: Estilos.EstiloInstancia.texto3
                           ),
                           Estilos.EstiloInstancia.separador,
                           Pelota(
@@ -104,6 +101,10 @@ class _TiendaState extends State<Tienda> {
                                     //Si el color esta desbloqueado, puedes cambiarlo
                                     if(lista_item_tienda[index].desbloqueado){
                                     Jugador.JugadorInstancia.skin = lista_item_tienda[index].color;
+
+                                    //guardar datos del jugador(nuevo color)
+                                    ResourceManager.RM.guardar();
+
                                     }
 
                                     //cambiar estado

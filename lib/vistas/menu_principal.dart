@@ -1,6 +1,6 @@
+import 'package:breakout/modelo/resource_manager.dart';
 import 'package:breakout/vistas/vistas.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:breakout/modelo/modelo.dart';
 
 
@@ -9,11 +9,23 @@ import 'package:breakout/modelo/modelo.dart';
  * Es un Stless, menos problemas
  */
 
-class Menu_Principal extends StatelessWidget {
+
+//Tiene que ser stful para que el record se actualic bien
+
+class Menu_Principal extends StatefulWidget {
   const Menu_Principal({Key? key}) : super(key: key);
 
   @override
+  State<Menu_Principal> createState() => _Menu_PrincipalState();
+}
+
+class _Menu_PrincipalState extends State<Menu_Principal> {
+  @override
   Widget build(BuildContext context) {
+
+    //Cargar datos del jugador
+    ResourceManager.RM.cargar();
+
     return Scaffold(
         body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
@@ -69,7 +81,7 @@ class Menu_Principal extends StatelessWidget {
                                 style: Estilos.EstiloInstancia.estiloboton2,
                                 child: Text(
                                   "TIENDA",
-                                    style: Estilos.EstiloInstancia.texto2,
+                                  style: Estilos.EstiloInstancia.texto2,
                                 )
                             ),
                           ),

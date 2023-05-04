@@ -1,6 +1,5 @@
 import 'package:breakout/vistas/vistas.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:breakout/modelo/modelo.dart';
 
 /*
@@ -12,6 +11,10 @@ class Game_Over extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
+
+    //Guardar datos del jugador (nuevo record)
+    ResourceManager.RM.guardar();
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -33,9 +36,7 @@ class Game_Over extends StatelessWidget {
                 Estilos.EstiloInstancia.separador,
                 Text(
                   "${Jugador.JugadorInstancia.puntuacion_actual}",
-                  style: GoogleFonts.vt323(
-                    textStyle: Estilos.EstiloInstancia.titulo2
-                  ),
+                  style: Estilos.EstiloInstancia.titulo2
                 ),
                 Estilos.EstiloInstancia.separador,
                 //El mensaje solo se muestra cuando hay un nuevo récord

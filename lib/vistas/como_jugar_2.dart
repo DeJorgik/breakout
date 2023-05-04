@@ -1,6 +1,5 @@
 import 'package:breakout/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:breakout/modelo/modelo.dart';
 
 /*
@@ -23,7 +22,7 @@ class _Como_JugarState extends State<Como_Jugar> {
     "El objetivo del juego es romper todos los ladrillos usando la pelota.",
     "Desliza la raqueta con el dedo para que la pelota rebote.",
     "Si la pelota cae al suelo, ¡Game over!",
-    "Algunos ladrilos necesitan más golpes para romperse.",
+    "Algunos ladrilos necesitan más golpes para romperse. Los de color negro harán la pelota mas pequeña",
     "Cuanto más alto sea tu récord, más colores nuevos podrás desbloquear en la tienda.",
   ];
 
@@ -53,7 +52,7 @@ class _Como_JugarState extends State<Como_Jugar> {
                     child: Text(
                       "[${id_instruccion+1}/5]",
                       textAlign: TextAlign.center,
-                      textScaleFactor: 1.3,
+                      textScaleFactor: 2,
                       style: const TextStyle(
                         fontFamily: 'VT323'
                       ),
@@ -67,7 +66,7 @@ class _Como_JugarState extends State<Como_Jugar> {
                       child: Text(
                         texto_instruccion,
                         textAlign: TextAlign.center,
-                        textScaleFactor: 1.2,
+                        textScaleFactor: 1.7,
                         style: const TextStyle(
                             fontFamily: 'VT323'
                         ),

@@ -1,6 +1,5 @@
 import 'package:breakout/vistas/vistas.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:breakout/modelo/modelo.dart';
 
 /*
@@ -20,10 +19,9 @@ class Pausa extends StatelessWidget {
               children: <Widget>[
                 Text(
                     "PAUSA",
-                    style: GoogleFonts.vt323(
-                        textStyle: Estilos.EstiloInstancia.titulo
+                    style: Estilos.EstiloInstancia.titulo
                     )
-                ),
+                ,
                 Estilos.EstiloInstancia.separador,
                 SizedBox(
                   width: Pantalla.PantallaInstancia.ancho/2,
